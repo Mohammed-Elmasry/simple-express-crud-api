@@ -1,7 +1,5 @@
 "use strict";
 
-import http from "node:http";
-
 import {Employee} from "./models.js";
 
 // Employee.sync();
@@ -21,7 +19,7 @@ async function deleteEmployee(employeeId) {
     });
 
     if (employee) { // exists
-        employee.destroy();
+        await employee.destroy();
     } else { // does not exist so throw exception
         throw new Error("Model not found exception");
     }
