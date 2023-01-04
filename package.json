@@ -6,10 +6,11 @@
     "sequelize-cli": "^6.5.2"
   },
   "scripts": {
-    "dev": "nodemon ./app.js",
+    "dev": "nodemon app.mjs",
     "migration": "sequelize-cli"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "nodemon": "^2.0.20"
   }
 }
