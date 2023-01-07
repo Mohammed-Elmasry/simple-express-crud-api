@@ -10,8 +10,11 @@ const PORT = 3000;
 app.use(bodyParser.json({extended: true}));
 
 app.post("/employees", (req, res) => {
-    EmployeeModel.create(req.body);
-    res.status(201).send({"response": "Created"});
+    EmployeeModel.create(req.body).then(() => {
+        res.status(201).send({"response": "Created"});
+    }).catch((error) => {
+        res.status(400).send({"response": error.errors[0].message});
+    });
 });
 
 app.get("/employees/:id", (req, res) => {
@@ -38,6 +41,13 @@ app.put("/employees/:id", (req, res) => {
 
         res.status(200).send({"response": "Updated"});
     })(EmployeeModel, res);
+});
+
+app.get("/employees", (req, res) => {
+    (async (model) => {
+        let employees = await model.findAll();
+        res.status(200).send(employees);
+    })(EmployeeModel);
 });
 
 
