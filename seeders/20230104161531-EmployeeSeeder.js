@@ -4,15 +4,8 @@ const generateEmployee = require("../factories/EmployeesFactory");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        /**
-         * Add seed commands here.
-         *
-         * Example:
-         * await queryInterface.bulkInsert('People', [{
-         *   name: 'John Doe',
-         *   isBetaMember: false
-         * }], {});
-         */
-
+        for (let i = 0; i < 10; i++) {
+            await generateEmployee().save();
+        }
     }
 };
